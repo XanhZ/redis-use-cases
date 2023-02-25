@@ -4,8 +4,8 @@ import express from 'express'
 import session from 'express-session'
 import { initConsumers } from './consumers'
 import { ConfigModule } from './configs'
-import { RedisConnection } from './connections'
-import { RedlockConnection } from './connections/redlock.connection'
+import { RedisConnection, RedlockConnection } from './connections'
+import { GoogleSheetService } from './services'
 import { initRoutes } from './routes'
 
 async function main() {
@@ -13,8 +13,9 @@ async function main() {
 
 	const redisConnection = RedisConnection.getInstance()
 	const redlockConnection = RedlockConnection.getInstance()
+  const googleSheetService = GoogleSheetService.getInstance()
 
-	const connections = [redisConnection, redlockConnection]
+	const connections = [redisConnection, redlockConnection, googleSheetService]
 
 	await Bluebird.each(connections, connection => connection.init())
 

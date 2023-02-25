@@ -43,7 +43,7 @@ export class RedlockConnection implements Connection {
 			retryCount: 10,
 
 			// the time in ms between attempts
-			retryDelay: 200, // time in ms
+			retryDelay: 1000, // time in ms
 
 			// the max time in ms randomly added to retries
 			// to improve performance under high contention
